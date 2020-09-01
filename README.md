@@ -4,7 +4,7 @@
 
 
 ## Introduction
-You can use it inside other server, clone it under gitlab.com/dekape/dekalogs
+`go get github.com/aeeem/LogStack`
 
 this contains several, level of logging 
 
