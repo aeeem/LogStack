@@ -8,14 +8,13 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	global "github.com/aeeem/LogStack"
 	"github.com/gorilla/mux"
-
-	"github.com/aeeem/LogStack"
 )
 
 func TestLogsWarn(t *testing.T) {
-	LogStack.InitLogs("none", "none", "dekape-dev-server")
-	test := LogStack.Logs
+	global.InitLogs("none", "none", "dekape-dev-server")
+	test := global.Logs
 
 	test.Warn("just test")
 	test.WithFields(map[string]interface{}{
@@ -24,8 +23,8 @@ func TestLogsWarn(t *testing.T) {
 }
 
 func TestLogsInfo(t *testing.T) {
-	LogStack.InitLogs("none", "none", "dekape-dev-server")
-	test := LogStack.Logs
+	global.InitLogs("none", "none", "dekape-dev-server")
+	test := global.Logs
 	test.Info("just test")
 	test.WithFields(map[string]interface{}{
 		"test_hehe": "ini test",
@@ -33,8 +32,8 @@ func TestLogsInfo(t *testing.T) {
 }
 
 func TestLogsError(t *testing.T) {
-	LogStack.InitLogs("none", "none", "dekape-dev-server")
-	test := LogStack.Logs
+	global.InitLogs("none", "none", "dekape-dev-server")
+	test := global.Logs
 
 	test.Error("just test")
 	test.WithFields(map[string]interface{}{
@@ -43,8 +42,8 @@ func TestLogsError(t *testing.T) {
 }
 
 func TestLogsDebug(t *testing.T) {
-	LogStack.InitLogs("JSON", "none", "dekape-dev-server")
-	test := LogStack.Logs
+	global.InitLogs("JSON", "none", "dekape-dev-server")
+	test := global.Logs
 
 	test.Debug("just test")
 	test.WithFields(map[string]interface{}{
@@ -53,8 +52,8 @@ func TestLogsDebug(t *testing.T) {
 }
 
 func TestLogsDebugWithStruct(t *testing.T) {
-	LogStack.InitLogs("json", "none", "dekape-dev-server")
-	test := LogStack.Logs
+	global.InitLogs("json", "none", "dekape-dev-server")
+	test := global.Logs
 
 	test.DebugWithStruct("just test", struct {
 		Name   string
@@ -69,9 +68,9 @@ func TestLogsDebugWithStruct(t *testing.T) {
 }
 
 func TestLogMiddleware(t *testing.T) {
-	LogStack.InitLogs("json", "none", "dekape-dev-server")
+	global.InitLogs("json", "none", "dekape-dev-server")
 	router := mux.NewRouter()
-	router.Use(LogStack.Middleware.DefaultLog)
+	router.Use(global.Middleware.DefaultLog)
 	router.HandleFunc("/test", DummyController).Methods("POST")
 	request, _ := json.Marshal(map[string]interface{}{
 		"test": "body",

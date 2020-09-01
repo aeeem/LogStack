@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"gitlab.com/dekape/dekalogs/responses"
-
+	"github.com/aeeem/LogStack/responses"
 	"github.com/thedevsaddam/renderer"
 )
 

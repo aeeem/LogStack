@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"runtime"
 
-	"gitlab.com/dekape/dekalogs/logger"
+	"github.com/aeeem/LogStack/logger"
 )
 
 //RecoveryFromPanic ...
